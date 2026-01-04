@@ -8,19 +8,20 @@ import {
   Bot, 
   QrCode, 
   Trophy, 
-  BarChart3 
+  BarChart3,
+  Calendar
 } from 'lucide-react';
 import { Tool } from './types';
 
 export const TOOLS_CONFIG = [
-  { id: Tool.HOME, label: 'Home', icon: <Home size={20} />, description: 'Menu Utama' },
-  { id: Tool.FORUM, label: 'Forum Chat', icon: <MessageSquare size={20} />, description: 'Komunitas Jawir' },
+  { id: Tool.FORUM, label: 'Forum', icon: <MessageSquare size={20} />, description: 'Diskusi Jawir' },
+  { id: Tool.AI, label: 'Jawir AI', icon: <Bot size={20} />, description: 'Asisten Pintar' },
+  { id: Tool.HOME, label: 'Home', icon: <Home size={28} />, description: 'Menu Utama' },
+  { id: Tool.LEADERBOARD, label: 'Top', icon: <Trophy size={20} />, description: 'Peringkat Chat' },
+  { id: Tool.STATS, label: 'Stats', icon: <BarChart3 size={20} />, description: 'Data Statistik' },
+  { id: Tool.CALENDAR, label: 'Sejarah', icon: <Calendar size={20} />, description: 'Peristiwa Masa Lalu' },
+  { id: Tool.QR, label: 'QR Maker', icon: <QrCode size={20} />, description: 'Generate QR' },
   { id: Tool.GRID, label: 'IG Grid', icon: <Grid size={20} />, description: 'Kalkulator Feed' },
-  { id: Tool.COLOR, label: 'Color Picker', icon: <Palette size={20} />, description: 'Ekstrak Warna' },
-  { id: Tool.AI, label: 'AI Assistant', icon: <Bot size={20} />, description: 'Tanya Jawir AI' },
-  { id: Tool.QR, label: 'QR Generator', icon: <QrCode size={20} />, description: 'Buat Kode QR' },
-  { id: Tool.LEADERBOARD, label: 'Top Global', icon: <Trophy size={20} />, description: 'Peringkat Chat' },
-  { id: Tool.STATS, label: 'Statistik', icon: <BarChart3 size={20} />, description: 'Data Real-time' },
 ];
 
 export const FIREBASE_CONFIG = {
@@ -34,14 +35,18 @@ export const FIREBASE_CONFIG = {
   measurementId: "G-J7K9NQZ0GM"
 };
 
+export const superNormalize = (text: string): string => {
+  if (!text) return "";
+  let clean = text.toLowerCase();
+  const map: {[key: string]: string} = {
+    '4': 'a', '@': 'a', '3': 'e', '1': 'i', '!': 'i', '0': 'o', '5': 's', '$': 's', '7': 't', '8': 'b', 'v': 'u'
+  };
+  clean = clean.split('').map(char => map[char] || char).join('');
+  clean = clean.replace(/[^a-z]/g, '');
+  clean = clean.replace(/(.)\1+/g, '$1');
+  return clean;
+};
+
 export const BLOCKLIST = [
-    // INDONESIA UMUM
-    "anjing", "anjg", "ajg", "anj", "babi", "bangsat", "bgst", "bajingan", 
-    "brengsek", "brgsk", "biadab", "goblok", "gblk", "tolol", "tll", "idiot", 
-    "kampret", "keparat", "kunyuk", "monyet", "pantek", "perek", "setan", 
-    4"sinting", "sontoloyo", "tai", "tahi", "geblek", "upil", "sompret", "bego", "dungu",
-    "jancok", "jancuk", "cok", "coeg", "dancok", "jamput", "gateli", "matamu", "ndasmu", 
-    "asu", "asw", "kirik", "pekok", "bagong", "anjir", "anying", "goblog", "sias", 
-    "belegug", "koplok", "kehed", "ontohod", "seuneu", "pukimak", "puki", "kimak", 
-    "telaso", "laso", "sundala", "bujanginam", "bodat", "pantek", 
-    "kontol",
+  "kontol", "kntl", "knthl", "kntol", "memek", "mmk", "pantek", "pntk", "anjing", "anjng", "ajg", "anj", "asu", "asw", "goblok", "gblk", "tolol", "jancok", "jancuk", "cok", "peju", "ngentot", "ngewe", "sange", "bokep", "porno", "bugil", "itil", "jembut", "colmek", "coli", "tetek", "toket", "perek", "lonte", "jablay", "setan", "iblis", "dajjal", "pantat", "silit", "niga", "nigga", "negro", "jomok", "banci", "bencong", "autis", "yatim"
+];

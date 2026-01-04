@@ -7,7 +7,8 @@ export enum Tool {
   AI = 'ai',
   QR = 'qr',
   LEADERBOARD = 'leaderboard',
-  STATS = 'stats'
+  STATS = 'stats',
+  CALENDAR = 'calendar'
 }
 
 export interface ChatMessage {
