@@ -48,8 +48,9 @@ const StatsTool: React.FC = () => {
 
   if (!stats) return <div className="p-8 text-center text-gray-500">Memuat data...</div>;
 
+  // Fixed: Explicitly typed the entries as [string, { count: number }][] to resolve 'unknown' property access errors.
   const topFeatures = stats.features ? 
-    Object.entries(stats.features)
+    (Object.entries(stats.features) as [string, { count: number }][])
       .sort(([, a], [, b]) => b.count - a.count)
       .slice(0, 5) : [];
 
