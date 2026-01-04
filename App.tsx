@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  Menu, X, Sparkles, AlertCircle, Home,
-  MessageSquare, Bot, Trophy, BarChart3, Calendar, QrCode, Grid,
+  Menu, X, Sparkles, Home,
+  MessageSquare, Bot, Trophy, BarChart3,
   Instagram, Heart
 } from 'lucide-react';
 import { Tool } from './types';
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   const promos = [
     { text: "Support Jawir Designer!", icon: <Heart size={14} className="text-red-500" /> },
-    { text: "Follow IG @jawirdesigner", icon: <Instagram size={14} className="text-pink-500" /> }
+    { text: "Follow IG @jawirdesigner", icon: <Instagram size={14} className="text-[#5DFF8E]" /> }
   ];
 
   useEffect(() => {
@@ -39,8 +39,8 @@ const App: React.FC = () => {
       
       setTimeout(() => {
         setShowPromo(false);
-      }, 3000); // Melayang selama 3 detik
-    }, 10000); // Muncul setiap 10 detik
+      }, 3000); 
+    }, 10000);
 
     return () => clearInterval(timer);
   }, []);
@@ -56,13 +56,13 @@ const App: React.FC = () => {
       case Tool.HOME:
         return (
           <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 pb-20">
-            <div className="relative overflow-hidden p-8 rounded-[40px] glass-panel border border-[#5DFF8E]/20 group">
+            <div className="relative overflow-hidden p-8 rounded-[40px] glass-panel border border-white/5 group bg-gradient-to-b from-zinc-900 to-black">
               <div className="absolute -top-10 -right-10 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Sparkles size={240} className="text-[#5DFF8E]" />
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[5px] text-[#5DFF8E] mb-4 text-center">Dashboard Kreatif</p>
+              <p className="text-[10px] font-black uppercase tracking-[5px] text-[#5DFF8E] mb-4 text-center">AI POWERED TOOLS</p>
               <h1 className="text-4xl font-black text-white mb-2 leading-none tracking-tighter italic text-center">Jawir.Tools</h1>
-              <p className="text-sm text-gray-500 leading-relaxed text-center font-medium">Modern, Minimalist, Clean UI. Akses semua fitur premium pilihan Jawir Designer dalam satu dashboard, Wir!</p>
+              <p className="text-sm text-gray-400 leading-relaxed text-center font-medium max-w-[280px] mx-auto">Modern. Minimalist. Clean. Akses semua kebutuhan kreatifmu di sini, Wir!</p>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
@@ -70,14 +70,14 @@ const App: React.FC = () => {
                  <button 
                   key={t.id}
                   onClick={() => switchTab(t.id)}
-                  className="flex flex-col items-center justify-center gap-3 p-6 rounded-[32px] bg-[#121212] border border-white/5 hover:border-[#5DFF8E]/30 transition-all group active:scale-95 shadow-xl"
+                  className="flex flex-col items-center justify-center gap-3 p-6 rounded-[32px] bg-[#121212] border border-white/5 hover:border-[#5DFF8E]/30 transition-all group active:scale-95"
                 >
-                  <div className="p-4 bg-white/5 rounded-2xl group-hover:text-[#5DFF8E] group-hover:bg-[#5DFF8E]/10 transition-all">
+                  <div className="p-4 bg-white/5 rounded-2xl group-hover:text-[#5DFF8E] transition-all">
                     {t.icon}
                   </div>
                   <div className="text-center">
                     <span className="block text-sm font-bold text-white mb-1">{t.label}</span>
-                    <span className="block text-[9px] text-gray-600 uppercase tracking-tighter">{t.description}</span>
+                    <span className="block text-[8px] text-gray-600 uppercase tracking-tighter">{t.description}</span>
                   </div>
                 </button>
                ))}
@@ -91,7 +91,7 @@ const App: React.FC = () => {
       case Tool.STATS: return <StatsTool />;
       case Tool.LEADERBOARD: return <LeaderboardTool />;
       case Tool.CALENDAR: return <CalendarTool />;
-      default: return <div className="p-8 text-center text-gray-500 font-bold italic">Fitur segera hadir, Wir!</div>;
+      default: return null;
     }
   };
 
@@ -109,37 +109,28 @@ const App: React.FC = () => {
       
       {/* Floating Promo */}
       <div className={`fixed bottom-28 right-6 z-[60] transition-all duration-700 transform ${showPromo ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-10 opacity-0 scale-90 pointer-events-none'}`}>
-        <div className="bg-[#121212] border border-[#5DFF8E]/30 px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(93,255,142,0.2)]">
+        <div className="bg-[#1a1a1a] border border-[#5DFF8E]/20 px-5 py-2.5 rounded-full flex items-center gap-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-t-[#5DFF8E]/40">
           {promos[promoIndex].icon}
-          <span className="text-[10px] font-black text-[#5DFF8E] uppercase tracking-wider whitespace-nowrap">{promos[promoIndex].text}</span>
+          <span className="text-[10px] font-black text-white uppercase tracking-widest whitespace-nowrap">{promos[promoIndex].text}</span>
         </div>
       </div>
 
-      <div className="relative w-full max-w-[480px] h-screen md:h-[880px] bg-[#000000] md:rounded-[50px] md:border-[1px] md:border-white/10 shadow-2xl flex flex-col overflow-hidden">
+      <div className="relative w-full max-w-[480px] h-screen md:h-[850px] bg-[#000000] md:rounded-[50px] md:border-[1px] md:border-white/10 shadow-2xl flex flex-col overflow-hidden">
         
-        <header className="p-6 pb-2 flex items-center justify-between shrink-0 bg-black/60 backdrop-blur-xl z-40">
-          <div className="flex items-center gap-2 cursor-pointer group" onClick={() => setActiveTool(Tool.HOME)}>
-            <div className="w-2.5 h-2.5 rounded-full bg-[#5DFF8E] animate-pulse"></div>
-            <span className="text-base font-black tracking-tighter text-white uppercase italic">Jawir.Tools</span>
+        <header className="p-6 pb-2 flex items-center justify-between shrink-0 bg-black/50 backdrop-blur-xl z-40">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTool(Tool.HOME)}>
+            <div className="w-2 h-2 rounded-full bg-[#5DFF8E] animate-pulse"></div>
+            <span className="text-sm font-black tracking-tight text-white uppercase italic">Jawir.Tools</span>
           </div>
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-12 h-12 rounded-2xl flex items-center justify-center transition-all hover:bg-white/5"
-          >
-            {isMenuOpen ? <X size={24} className="text-[#5DFF8E]" /> : <Menu size={24} className="text-white" />}
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
+            {isMenuOpen ? <X size={20} className="text-[#5DFF8E]" /> : <Menu size={20} className="text-white" />}
           </button>
         </header>
 
         <nav className={`absolute inset-0 z-50 bg-black transition-all duration-500 p-8 pt-24 ${isMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}`}>
-          <div className="grid grid-cols-2 gap-4">
+           <div className="grid grid-cols-2 gap-4">
             {TOOLS_CONFIG.map(t => (
-              <button
-                key={t.id}
-                onClick={() => switchTab(t.id)}
-                className={`flex flex-col items-center gap-3 p-6 rounded-[28px] transition-all ${
-                  activeTool === t.id ? 'bg-[#5DFF8E]/10 border-[#5DFF8E]/20 text-[#5DFF8E]' : 'bg-[#121212] border-white/5 text-gray-600 hover:text-white'
-                }`}
-              >
+              <button key={t.id} onClick={() => switchTab(t.id)} className="flex flex-col items-center gap-3 p-6 rounded-[28px] bg-zinc-900 border border-white/5 text-white">
                 {t.icon}
                 <span className="font-bold text-xs">{t.label}</span>
               </button>
@@ -153,45 +144,22 @@ const App: React.FC = () => {
           </div>
         </main>
 
-        <footer className="h-24 bg-black/80 backdrop-blur-2xl border-t border-white/5 flex items-center justify-around px-2 shrink-0 z-30 relative">
+        <footer className="h-24 bg-zinc-900/50 backdrop-blur-3xl border-t border-white/5 flex items-center justify-around px-2 shrink-0 z-40">
           {bottomNavItems.map((item) => {
             const isActive = activeTool === item.id;
-            
             if (item.isSpecial) {
               return (
-                <button
-                  key={item.id}
-                  onClick={() => switchTab(item.id)}
-                  className="relative -top-6 flex flex-col items-center group"
-                >
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_10px_30px_-5px_rgba(93,255,142,0.4)] ${
-                    isActive 
-                    ? 'bg-[#5DFF8E] text-black scale-110' 
-                    : 'bg-[#1a1a1a] text-white border border-white/10'
-                  }`}>
+                <button key={item.id} onClick={() => switchTab(item.id)} className="relative -top-6">
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center transition-all shadow-[0_8px_25px_rgba(93,255,142,0.3)] ${isActive ? 'bg-[#5DFF8E] text-black' : 'bg-zinc-800 text-white border border-white/10'}`}>
                     {item.icon}
                   </div>
-                  <span className={`text-[9px] font-black uppercase mt-2 tracking-tighter ${isActive ? 'text-[#5DFF8E]' : 'text-gray-500'}`}>
-                    {item.label}
-                  </span>
                 </button>
               );
             }
-
             return (
-              <button
-                key={item.id}
-                onClick={() => switchTab(item.id)}
-                className={`flex flex-col items-center gap-1.5 transition-all w-16 ${
-                  isActive ? 'text-[#5DFF8E]' : 'text-gray-700'
-                }`}
-              >
-                <div className={`transition-transform duration-300 ${isActive ? 'scale-110' : ''}`}>
-                  {item.icon}
-                </div>
-                <span className={`text-[9px] font-black uppercase tracking-tighter ${isActive ? 'opacity-100' : 'opacity-40'}`}>
-                  {item.label}
-                </span>
+              <button key={item.id} onClick={() => switchTab(item.id)} className={`flex flex-col items-center gap-1 transition-all ${isActive ? 'text-[#5DFF8E]' : 'text-zinc-500'}`}>
+                {item.icon}
+                <span className="text-[8px] font-black uppercase">{item.label}</span>
               </button>
             );
           })}
