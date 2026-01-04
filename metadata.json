@@ -1,0 +1,8 @@
+{
+  "name": "Jawir Gemini Edition",
+  "description": "A modern, minimalist redesign of Jawir Tools featuring a Gemini-inspired UI, advanced statistics with Recharts, and AI-powered assistance.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
